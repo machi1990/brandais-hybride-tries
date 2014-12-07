@@ -17,13 +17,15 @@ public class FonctionnalityTest {
 
 	public static void launchTest(Iarbre testArbre) {
 		try {
-			// String[] chaineInit = FileRead.readDirectory("ressources");
-			String[] chaineInit = FileRead.readWord(new File("ressources/macbeth.txt"));
+			String[] chaineInit = FileRead.readDirectory("ressources");
+			//String[] chaineInit = FileRead.readWord(new File("ressources/macbeth.txt"));
 			testArbre = initializeArbre(chaineInit, testArbre);
 			hauteurArbre(testArbre);
 			comptageMotsArbre(testArbre);
 			comptageNilsArbre(testArbre);
-			// testArbre.affiche("");
+			rechercheDansArbre(testArbre, "zo");
+			prefixeDansArbre(testArbre, "zo");
+			//testArbre.affiche("");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -41,7 +43,7 @@ public class FonctionnalityTest {
 	}
 
 	public static void comptageMotsArbre(Iarbre testArbre) {
-		System.out.println("Le nombre de mots vaut : " + testArbre.Hauteur());
+		System.out.println("Le nombre de mots vaut : " + testArbre.ComptageMots());
 	}
 
 	public static void listeMotsArbre(Iarbre testArbre) {
@@ -53,11 +55,24 @@ public class FonctionnalityTest {
 	}
 
 	public static void comptageNilsArbre(Iarbre testArbre) {
-		System.out.println("Le nombre de nils vaut : " + testArbre.Hauteur());
+		System.out.println("Le nombre de nils vaut : " + testArbre.ComptageNil());
 	}
 
 	public static void profondeurMoyenneArbre(Iarbre testArbre) {
 		System.out.println("La profondeur moyenne de l'arbre vaut : " + testArbre.profondeurMoyenne());
+	}
+	
+	public static void rechercheDansArbre(Iarbre testArbre, String word){
+		if(testArbre.Recherche(word)){
+			System.out.println("Le mot " + word + " est dans le dictionnaire");
+		}
+		else{
+			System.out.println("Le mot " + word + " n'est pas dans le dictionnaire");
+		}
+	}
+	
+	public static void prefixeDansArbre(Iarbre testArbre, String word) {
+		System.out.println("Il y'a " + testArbre.prefixe(word) + " mots avec comme préfixe " + word);
 	}
 
 	public static void main(String[] args) {
